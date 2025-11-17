@@ -7,6 +7,10 @@
 </head>
 <body>
 
+ <header>
+    <a href="/V3ToSSummary/Index4.html" class="back-link">← Back to all summaries</a>
+  </header>
+
   <h1>Discord Terms Summary</h1>
 
   <h2>1. Parties &amp; Scope</h2>
@@ -59,11 +63,5 @@
     <li>But those are controlled by third parties, so Discord isn’t responsible for their content or functionality.</li>
     <li>If you use them, you should read their terms too.</li>
   </ul>
-
-  <header>
-    <a href="/V3ToSSummary/Index4.html" class="back-link">← Back to all summaries</a>
-  </header>
-
-
 </body>
 </html>
