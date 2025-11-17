@@ -1,86 +1,64 @@
-1. **Parties & Scope**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discord Terms Summary</title>
+</head>
+<body>
 
-   * “Discord” means Discord Inc. and its related companies. ([Discord][1])
-   * “Services” means all Discord apps, websites, servers, etc. ([Discord][2])
-   * By using Discord, you agree to these terms as well as their other policies (Privacy Policy, Community Guidelines, etc.). ([Discord][1])
+  <h1>Discord Terms Summary</h1>
 
-2. **Age Requirement**
+  <h2>1. Parties &amp; Scope</h2>
+  <ul>
+    <li>“Discord” means Discord Inc. and its related companies.</li>
+    <li>“Services” means all Discord apps, websites, servers, etc.</li>
+    <li>By using Discord, you agree to these terms as well as their other policies (Privacy Policy, Community Guidelines, etc.).</li>
+  </ul>
 
-   * You must be at least **13 years old**, or older depending on where you live. ([Discord][2])
-   * If you’re a minor, your parent or legal guardian may need to agree to or supervise your account. ([Discord][2])
+  <h2>2. Age Requirement</h2>
+  <ul>
+    <li>You must be at least <strong>13 years old</strong>, or older depending on where you live.</li>
+    <li>If you’re a minor, your parent or legal guardian may need to agree to or supervise your account.</li>
+  </ul>
 
-3. **What Discord Provides**
+  <h2>3. What Discord Provides</h2>
+  <ul>
+    <li>Discord is a platform for communication (text, voice, video) across “servers” (chat rooms) and direct messaging.</li>
+    <li>Discord may change, remove, or add features over time.</li>
+    <li>They try to maintain safety tools (like for teens / guardians) and accessibility.</li>
+  </ul>
 
-   * Discord is a platform for communication (text, voice, video) across “servers” (chat rooms) and direct messaging. ([Discord][2])
-   * Discord may change, remove, or add features over time. ([Discord][2])
-   * They try to maintain safety tools (like for teens / guardians) and accessibility. ([Discord][1])
+  <h2>4. Accounts</h2>
+  <ul>
+    <li>You need an account to use many features: provide email or phone, set a password, and give your birthday.</li>
+    <li>You are responsible for keeping your account secure; they recommend using a strong password + two-factor authentication (2FA).</li>
+    <li>You should keep your account info (email, phone) up to date so Discord can reach you.</li>
+    <li>You’re not allowed to sell, lend, or transfer your account (or Discord username) without permission from Discord.</li>
+  </ul>
 
-4. **Accounts**
+  <h2>5. Your Content</h2>
+  <ul>
+    <li>“Your content” = anything you post/upload (text, images, video, etc.).</li>
+    <li>You must make sure you have the rights to anything you share (copyright, permission, etc.).</li>
+    <li>Even though it's yours, by using Discord, you grant them a license to use it (worldwide, royalty-free) — but only for limited purposes: running and improving their service.</li>
+    <li>Discord can remove your content if they think it violates their terms, guidelines, or applicable law.</li>
+    <li>They may also disclose your content to third parties if required by law or to protect rights/halt harm.</li>
+  </ul>
 
-   * You need an account to use many features: provide email or phone, set a password, and give your birthday. ([Discord][2])
-   * You are responsible for keeping your account secure; they recommend using a strong password + two-factor authentication (2FA). ([Discord][2])
-   * You should keep your account info (email, phone) up to date so Discord can reach you. ([Discord][2])
-   * You’re not allowed to sell, lend, or transfer your account (or Discord username) without permission from Discord. ([Discord][2])
+  <h2>6. Discord’s Content &amp; IP</h2>
+  <ul>
+    <li>Discord owns the design, art, and software of its platform.</li>
+    <li>You can’t copy, reverse-engineer, or pirate their software.</li>
+    <li>Some parts of their software are open-source; those parts are subject to different license terms.</li>
+  </ul>
 
-5. **Your Content**
+  <h2>7. Third-Party Content</h2>
+  <ul>
+    <li>Discord may link or provide access to external services, websites, and apps.</li>
+    <li>But those are controlled by third parties, so Discord isn’t responsible for their content or functionality.</li>
+    <li>If you use them, you should read their terms too.</li>
+  </ul>
 
-   * “Your content” = anything you post/upload (text, images, video, etc.). ([Discord][2])
-   * You must make sure you have the rights to anything you share (copyright, permission, etc.). ([Discord][2])
-   * Even though it's yours, by using Discord, you grant them a license to use it (worldwide, royalty-free) — but only for limited purposes: running and improving their service. ([Discord][2])
-   * Discord can remove your content if they think it violates their terms, guidelines, or applicable law. ([Discord][1])
-   * They may also disclose your content to third parties if required by law or to protect rights/halt harm. ([Discord][2])
-
-6. **Discord’s Content & IP**
-
-   * Discord owns the design, art, and software of its platform. ([Discord][2])
-   * You can’t copy, reverse-engineer, or pirate their software. ([Discord][2])
-   * Some parts of their software are open-source; those parts are subject to different license terms. ([Discord][2])
-
-7. **Third-Party Content**
-
-   * Discord may link or provide access to external services, websites, and apps. ([Discord][2])
-   * But those are controlled by third parties, so Discord isn’t responsible for their content or functionality. ([Discord][1])
-   * If you use them, you should read their terms too. ([Discord][2])
-
-8. **Paid Services**
-
-   * Basic Discord use is free. ([Discord][1])
-   * There are paid features (Nitro, other purchases); separate terms apply to those. ([Discord][3])
-
-9. **Rules / Restrictions**
-
-   * You must follow all applicable laws, Discord’s TOS, Community Guidelines, and other policies. ([Discord][4])
-   * You are prohibited from:
-
-     * Abusing or harassing others, hacking, or gaining unauthorized access. ([Discord][3])
-     * Bullying, spamming, or sending mass unsolicited messages. ([Discord][4])
-     * Transmitting viruses, using bots in ways they don’t allow, reverse engineering their software, etc. ([Discord][2])
-
-10. **Termination**
-
-    * You can delete your account any time. ([Discord][1])
-    * Discord can suspend or terminate your account if you violate the terms. ([Discord][2])
-    * Some parts of the agreement survive termination (like the license you granted for your content). ([Discord][2])
-
-11. **Disclaimers / Warranties**
-
-    * Discord provides services **“as is”**, without guarantees. ([Discord][1])
-    * They disclaim implied warranties (like “fitness for a particular purpose”), to the fullest extent allowed by law. ([Discord][2])
-
-12. **Liability Limits**
-
-    * Discord limits their liability heavily: for example, they’re not liable for lost profits, lost data, or service interruptions (within the bounds of law). ([Discord][1])
-    * If a claim arises, their maximum liability is either: what you paid in the last 3 months **or** $100 USD (or equivalent), whichever is greater. ([Discord][1])
-    * They also say they’re not responsible for what other users do on the platform. ([Discord][1])
-
-13. **Dispute Resolution**
-
-    * **Arbitration Clause**: For U.S. and Canada users, there’s an arbitration clause + a waiver of class-action lawsuits. ([Discord][1])
-    * This means in many cases you can’t sue Discord in court — disputes will be handled via arbitration, unless you opt out (depending on terms). ([Discord][1])
-
-14. **Other Legal Stuff**
-
-    * They may update the TOS. If changes are “material,” they’ll give advance notice (unless urgent). ([Discord][1])
-    * By continuing to use the service after changes, you accept them. ([Discord][1])
-    * You agree to comply with export control laws (e.g. not using Discord to distribute content that breaks export restrictions). ([Discord][2])
-    * There are standard legal clauses about severability, waiver, and assignment. ([Discord][1])
+</body>
+</html>
