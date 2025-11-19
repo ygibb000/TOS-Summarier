@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TOS Summary Library Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .search-box {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto 20px auto;
+            display: flex;
+            gap: 10px;
+        }
+        .search-box input {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .search-box select {
+            padding: 10px;
+            font-size: 16px;
+        }
+        .site-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .category-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>TOS Summary Library Search</h1>
+        <a href="/V3ToSSummary/Index1.html" class="back-link">← Back to Preferences</a>
+    </header>
+
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search for a site..." />
+        <select id="categoryFilter">
+            <option value="all">All Categories</option>
+        </select>
+    </div>
+
+    <div id="categoriesContainer"></div>
+
+    <script>
+
+        const userPrefs = JSON.parse(localStorage.getItem("userPreferences") || "{}");
+
+        console.log("Loaded user preferences:", userPrefs);
+
+        const pages = [
+            {
+                name: "Instagram",
+                link: "/V3ToSSummary/Htmls/instagram.html",
+                category: "Social Media"
+            },
+            {
+                name: "Discord",
+                link: "/V3ToSSummary/Htmls/discord.html",
+                category: "Social Media"
+            },
+            {
+                name: "Google",
+                link: "/V3ToSSummary/Htmls/google.html",
+                category: "Browser"
+            },
+            {
+                name: "YouTube",
+                link: "/V3ToSSummary/Htmls/youtube.html",
+                category: "Social Media"
+            }
+        ];
+
+        const searchInput = document.getElementById("searchInput");
+        const categoryFilter = document.getElementById("categoryFilter");
+        const categoriesContainer = document.getElementById("categoriesContainer");
+
+        function updateCategoriesDropdown() {
+            const uniqueCategories = [...new Set(pages.map(p => p.category))];
+            uniqueCategories.forEach(cat => {
+                const option = document.createElement("option");
+                option.value = cat;
+                option.textContent = cat;
+                categoryFilter.appendChild(option);
+            });
+        }
+
+        function renderPages() {
+            const searchText = searchInput.value.toLowerCase();
+            const selectedCategory = categoryFilter.value;
+
+            categoriesContainer.innerHTML = "";
+
+            const grouped = {};
+            pages.forEach(p => {
+            if (
+                (p.name.toLowerCase().includes(searchText) ||
+                p.category.toLowerCase().includes(searchText)) &&
+                (selectedCategory === "all" || selectedCategory === p.category)
+        ){
+        if (!grouped[p.category]) grouped[p.category] = [];
+        grouped[p.category].push(p);
+        }
+});
+
+
+            for (const category in grouped) {
+                const title = document.createElement("div");
+                title.className = "category-title";
+                title.textContent = category;
+
+                categoriesContainer.appendChild(title);
+
+                grouped[category].forEach(p => {
+                    const card = document.createElement("div");
+                    card.className = "site-card";
+                    card.innerHTML = `<strong>${p.name}</strong><br><a href="${p.link}">View Summary</a>`;
+                    categoriesContainer.appendChild(card);
+                });
+            }
+        }
+
+        searchInput.addEventListener("input", renderPages);
+        categoryFilter.addEventListener("change", renderPages);
+
+        updateCategoriesDropdown();
+        renderPages();
+
+    </script>
+</body>
+</html>

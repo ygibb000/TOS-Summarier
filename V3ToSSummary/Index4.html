@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TOS Summary Library Search</title>
+    <style>
+
+        /* Dropdown categories */
+.category-item {
+    margin: 8px 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.category-header {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    user-select: none;
+}
+
+.arrow {
+    transition: transform 0.2s ease;
+    font-weight: bold;
+}
+
+.open .arrow {
+    transform: rotate(90deg); /* ▶ becomes ▼ */
+}
+
+.subcategory-list {
+    display: none;
+    margin-left: 30px;
+    margin-top: 5px;
+}
+
+.open .subcategory-list {
+    display: block;
+}
+
+.subcategory-list a {
+    display: block;
+    margin: 3px 0;
+}
+
+
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .search-box {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto 20px auto;
+            display: flex;
+            gap: 10px;
+        }
+        .search-box input {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+
+        /* Category list */
+        #categoryList {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: 0 auto 20px auto;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        #categoryList ul {
+            list-style: disc;
+            padding-left: 25px;
+        }
+        #categoryList li {
+            margin: 8px 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* Site cards */
+        .site-card {
+            background: white;
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .warning {
+            background: lightyellow !important;
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <h1>TOS Summary Library Search</h1>
+    <a href="/V3ToSSummary/Index1.html" class="back-link">← Back to Preferences</a>
+</header>
+
+<div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search for a category or site..." />
+</div>
+
+
+<!-- Always-visible category block -->
+<div id="categoryList">
+    <h2>Categories</h2>
+    <h4>Select the down arrow to see everything in a specific category</h4>
+    <ul id="categoryListItems"></ul>
+</div>
+
+
+<!-- Results -->
+<div id="resultsContainer"></div>
+
+<script>
+
+    const userPrefs = JSON.parse(localStorage.getItem("userPreferences") || "{}");
+
+    const pages = [
+        {
+            name: "Instagram",
+            link: "/V3ToSSummary/Htmls/instagram.html",
+            category: "Social Media",
+            prefs: {
+                dataSharing: true,
+                locationTracking: true,
+                adPersonalization: true,
+                cookies: true
+            }
+        },
+        {
+            name: "Discord",
+            link: "/V3ToSSummary/Htmls/discord.html",
+            category: "Social Media",
+            prefs: {
+                dataSharing: true,
+                locationTracking: false,
+                adPersonalization: false,
+                cookies: true
+            }
+        },
+        {
+            name: "Google",
+            link: "https://raw.githubusercontent.com/ygibb000/TOS-Summarier/refs/heads/main/Discord",
+            category: "Browser",
+            prefs: {
+                dataSharing: true,
+                locationTracking: true,
+                adPersonalization: true,
+                cookies: true
+            }
+        },
+        {
+            name: "YouTube",
+            link: "/V3ToSSummary/Htmls/youtube.html",
+            category: "Social Media",
+            prefs: {
+                dataSharing: true,
+                locationTracking: true,
+                adPersonalization: true,
+                cookies: true
+            }
+        }
+    ];
+
+    const searchInput = document.getElementById("searchInput");
+    const categoryListItems = document.getElementById("categoryListItems");
+    const resultsContainer = document.getElementById("resultsContainer");
+
+
+  function renderCategoryList() {
+    const categories = [...new Set(pages.map(p => p.category))].sort();
+    categoryListItems.innerHTML = "";
+
+    categories.forEach(cat => {
+        // Create category container
+        const li = document.createElement("li");
+        li.className = "category-item";
+
+        // Header with arrow
+        const header = document.createElement("div");
+        header.className = "category-header";
+        header.innerHTML = `<span class="arrow">▶</span> ${cat}`;
+
+        // Sub-list container
+        const subList = document.createElement("div");
+        subList.className = "subcategory-list";
+
+        // Add all pages belonging to this category
+        pages.filter(p => p.category === cat).forEach(page => {
+            const link = document.createElement("a");
+            link.href = page.link;
+            link.textContent = page.name;
+            subList.appendChild(link);
+        });
+
+        // When header clicked → toggle dropdown
+        header.addEventListener("click", () => {
+            li.classList.toggle("open");
+        });
+
+        li.appendChild(header);
+        li.appendChild(subList);
+        categoryListItems.appendChild(li);
+    });
+}
+
+    function createSiteCard(page) {
+        const card = document.createElement("div");
+        card.className = "site-card";
+        let conflicts = [];
+
+        if (userPrefs.dataSharing && page.prefs.dataSharing)
+            conflicts.push("Data Sharing");
+        if (userPrefs.locationTracking && page.prefs.locationTracking)
+            conflicts.push("Location Tracking");
+        if (userPrefs.adPersonalization && page.prefs.adPersonalization)
+            conflicts.push("Ad Personalization");
+        if (userPrefs.cookies && page.prefs.cookies)
+            conflicts.push("Third-Party Cookies");
+
+        if (conflicts.length > 0) {
+            card.classList.add("warning");
+            card.innerHTML = `
+                <strong>${page.name} ⚠️</strong><br>
+                <a href="${page.link}">View Summary</a><br>
+                <em>⚠️ Conflicts: ${conflicts.join(", ")}</em>
+            `;
+        } else {
+            card.innerHTML = `
+                <strong>${page.name}</strong><br>
+                <a href="${page.link}">View Summary</a>
+            `;
+        }
+
+        return card;
+    }
+
+    function renderResults() {
+        const searchText = searchInput.value.toLowerCase();
+        resultsContainer.innerHTML = "";
+
+        if (searchText.trim() === "") {
+            return;
+        }
+
+        const matches = pages.filter(p =>
+            p.name.toLowerCase().includes(searchText) ||
+            p.category.toLowerCase().includes(searchText)
+        );
+
+        matches.forEach(page => {
+            resultsContainer.appendChild(createSiteCard(page));
+        });
+
+        if (matches.length === 0) {
+            resultsContainer.innerHTML = "<p>No matches found.</p>";
+        }
+    }
+
+    searchInput.addEventListener("input", renderResults);
+
+    renderCategoryList();
+    renderResults();
+</script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TOS Summary Library</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+    header { background: #1e90ff; color: white; padding: 1rem; text-align: center; }
+    .tabs { display: flex; background: #f2f2f2; border-bottom: 1px solid #ccc; }
+    .tab { padding: 1rem; cursor: pointer; flex: 1; text-align: center; }
+    .tab.active { background: white; border-bottom: 3px solid #1e90ff; font-weight: bold; }
+    .content { padding: 1rem; }
+    .hidden { display: none; }
+    input[type="search"] { padding: 0.5rem; width: 100%; max-width: 350px; margin-bottom: 1rem; }
+    ul { list-style: none; padding: 0; }
+    li { padding: 0.5rem 0; border-bottom: 1px solid #ddd; }
+    .category-title { margin-top: 1.5rem; font-weight: bold; font-size: 1.2rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>TOS Summary Library</h1>
+  </header>
+  
+  <div class="tabs">
+    <div class="tab active" data-tab="search">Search Pages</div>
+    <div class="tab" data-tab="preferences">Preferences</div>
+  </div>
+
+  <div class="content">
+
+    <!-- SEARCH PAGE -->
+    <div id="search" class="tab-panel">
+      <h2>Search Available TOS Summaries</h2>
+      <input type="search" id="searchBox" placeholder="Search summaries..." />
+
+      <div id="categorySections"></div>
+    </div>
+
+    <!-- PREFERENCES -->
+    <div id="preferences" class="tab-panel hidden">
+      <h2>User Preferences</h2>
+      <p>Select the things you would like to avoid</p>
+      <ul>
+        <li><label><input type="checkbox" /> Data Sharing</label></li>
+        <li><label><input type="checkbox" /> Location Tracking</label></li>
+        <li><label><input type="checkbox" /> Ad Personalization</label></li>
+        <li><label><input type="checkbox" /> Third‑Party Cookies</label></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <script>
+// REAL PAGES WITH CATEGORIES
+const pages = [
+  { name: 'Instagram', href: '/V3ToSSummary/Htmls/Instagram.html', category: 'Social Media', prefs: '⚠️ Tracks location, ❌ Shares data' },
+  { name: 'Discord', href: '/V3ToSSummary/Htmls/Discord.html', category: 'Social Media', prefs: '⚠️ Tracks location, ❌ Shares data' },
+  { name: 'Google', href: '/V3ToSSummary/Htmls/Google.html', category: 'Utility', prefs: '⚠️ Tracks location, ❌ Shares data' },
+  { name: 'YouTube', href: '/V3ToSSummary/Htmls/Youtube.html', category: 'Entertainment', prefs: '⚠️ Tracks location, ❌ Shares data' }
+];
+
+// Tab Switching
+const tabs = document.querySelectorAll('.tab');
+const panels = document.querySelectorAll('.tab-panel');
+
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+
+    panels.forEach(panel => panel.classList.add('hidden'));
+    document.getElementById(tab.dataset.tab).classList.remove('hidden');
+  });
+});
+
+// Build Category Sections
+const categoryContainer = document.getElementById('categorySections');
+const categories = [...new Set(pages.map(p => p.category))];
+
+categories.forEach(cat => {
+  const section = document.createElement('div');
+  section.innerHTML = `<div class="category-title">${cat}</div><ul id="cat-${cat.replace(/\s+/g, '-')}"></ul>`;
+  categoryContainer.appendChild(section);
+});
+
+pages.forEach(p => {
+  const list = document.getElementById(`cat-${p.category.replace(/\s+/g, '-')}`);
+  const li = document.createElement('li');
+  li.innerHTML = `<a href="${p.href}" class="tos-link" data-category="${p.category}">${p.name}<div class="prefs">${p.prefs}</div></a>`;
+  list.appendChild(li);
+});
+
+// Search Filter
+const searchBox = document.getElementById('searchBox');
+searchBox.addEventListener('input', () => {
+  const filter = searchBox.value.toLowerCase();
+  document.querySelectorAll('#categorySections li').forEach(item => {
+    const text = item.textContent.toLowerCase();
+    item.style.display = text.includes(filter) ? '' : 'none';
+  });
+});
+  </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TOS Summary Library</title>
+  <style>
+   body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .content {
+      padding: 1rem;
+    }
+    .hidden {
+      display: none;
+    }
+
+  </style>
+</head>
+
+<script>
+function savePreferences() {
+  const prefs = {
+    dataSharing: document.getElementById("pref_data").checked,
+    locationTracking: document.getElementById("pref_location").checked,
+    adPersonalization: document.getElementById("pref_ads").checked,
+    cookies: document.getElementById("pref_cookies").checked
+  };
+
+  localStorage.setItem("userPreferences", JSON.stringify(prefs));
+}
+</script>
+
+
+<body>
+  <header>
+    <h1>TOS Summary Library</h1>
+  </header>
+
+  <div class="content">
+
+    <div id="preferences" class="tab-panel">
+      <h2>User Preferences</h2>
+      <p>Select the things you would like to avoid</p>
+
+    <ul>
+  <li><label><input id="pref_data" type="checkbox" /> Data Sharing</label></li>
+  <li><label><input id="pref_location" type="checkbox" /> Location Tracking</label></li>
+  <li><label><input id="pref_ads" type="checkbox" /> Ad Personalization</label></li>
+  <li><label><input id="pref_cookies" type="checkbox" /> Third-Party Cookies</label></li>
+    </ul>
+</div>
+
+<button onclick="savePreferences()">
+  <a href="Index4.html">Go to the next page!</a>
+</button>
+
+
+
+    
+
